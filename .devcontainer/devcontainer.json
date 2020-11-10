@@ -1,0 +1,35 @@
+{
+    "name": "PHP & MariaDB",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/workspace",
+
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash",
+        "sqltools.connections": [{
+            "name": "Container database",
+            "driver": "MariaDB",
+            "server": "127.0.0.1",
+            "previewLimit": 50,
+            "port": 3306,
+            "database": "app",
+            "username": "root",
+            "password": "mariadb"
+        }]
+    },
+
+    "extensions": [
+        "editorconfig.editorconfig",
+        "felixfbecker.php-debug",
+        "felixfbecker.php-intellisense",
+        "ikappas.phpcs",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-mysql"
+    ],
+
+    "forwardPorts": [8080, 3306],
+
+    "postCreateCommand": "[ -d vendor ] || composer install; [ -e .env ] || > .env",
+
+    "remoteUser": "vscode"
+}
